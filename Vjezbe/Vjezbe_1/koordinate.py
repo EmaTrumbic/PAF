@@ -18,29 +18,22 @@ k = (y2-y1)/(x2-x1)
 l = y1-k*x1
 
 if k==1.0:
-    if l>0:
-        print('y=x+{}'.format(l))
-    elif l<0:
-        print('y=x{}'.format(l))
-    else:
-        print('y=x')
-
+    str1='y=x'
 elif k==-1.0:
-    if l>0:
-        print('y=-x+{}'.format(l))
-    elif l<0:
-        print('y=-x{}'.format(l))
-    else:
-        print('y=-x')
-
+    str1='y=-x'
 elif k==0.0:
-    print('y={}'.format(l))
-    
+    str1='y='
 else:
-    if l>0:
-        print('y={}x+{}'.format(k,l))
-    elif l<0:
-        print('y={}x{}'.format(k,l))
-    else:
-        print('y={}x'.format(k))
+    str1='y={}x'.format(k)
 
+if l>0:
+    str2='+{}'.format(l)
+elif l<0:
+    str2='{}'.format(l)
+else:
+    str2=''
+
+if k==0 and l==0:
+    print('y=0.0')
+else:
+    print(str1+str2)
