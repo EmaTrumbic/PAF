@@ -15,11 +15,14 @@ lista_x=[0]
 lista_y=[0]
 t=np.linspace(0,10,10000)
 
+dt = 0.001
+g = 9.81
+
 
 for i in range(9999):
-    x += v0x*0.001
-    y += v0y*0.001
-    v0y -= 9.81*0.001
+    x += v0x*dt
+    y += v0y*dt
+    v0y -= g*dt
     lista_x.append(x)
     lista_y.append(y)
 

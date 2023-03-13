@@ -5,20 +5,21 @@ def jednoliko_gibanje(F,m,t):
     a = F/m
     v = 0
     x = 0
-    akceleracija = []
-    brzina = []
-    pomak = []
     proteklo_vrijeme = 0
-    vrijeme = []
+    dt = 0.01
+    akceleracija = [a]
+    brzina = [0]
+    pomak = [0]
+    vrijeme = [0]
 
     while proteklo_vrijeme<t:
+        proteklo_vrijeme += dt
+        v += a*dt
+        x += v*dt
         vrijeme.append(proteklo_vrijeme)
         akceleracija.append(a)
         brzina.append(v)
         pomak.append(x)
-        v += a*0.01
-        x += v*0.01
-        proteklo_vrijeme += 0.01
     
     fig, axes = plt.subplots(nrows=1, ncols=3)
 
@@ -47,19 +48,22 @@ def kosi_hitac(v0,θ,t):
     
     x = 0
     y = 0
-    lista_x=[]
-    lista_y=[]
     proteklo_vrijeme=0
-    vrijeme=[]
+    g = 9.81
+    dt = 0.001
+    lista_x=[0]
+    lista_y=[0]
+    vrijeme=[0]
     
     while proteklo_vrijeme<t:
+        proteklo_vrijeme += dt
+        x += v0x*dt
+        y += v0y*dt
+        v0y -= g*dt
         vrijeme.append(proteklo_vrijeme)
         lista_x.append(x)
         lista_y.append(y)
-        x += v0x*0.001
-        y += v0y*0.001
-        v0y -= 9.81*0.001
-        proteklo_vrijeme += 0.001
+        
     
     fig, axes = plt.subplots(nrows=1, ncols=3)
 

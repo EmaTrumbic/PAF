@@ -1,4 +1,3 @@
-import numpy as np
 import matplotlib.pyplot as plt
 
 F = float(input('Unesite silu (N): '))
@@ -11,10 +10,11 @@ akceleracija = [a]
 brzina = [0]
 pomak = [0]
 vrijeme = np.linspace(0,10,1000)
+dt = 0.01
 
 for i in range(999):
-    v += a*0.01
-    x += v*0.01
+    v += a*dt
+    x += v*dt
     akceleracija.append(a)
     brzina.append(v)
     pomak.append(x)
