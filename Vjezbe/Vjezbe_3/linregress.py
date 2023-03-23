@@ -18,7 +18,6 @@ umnozak_srednja_vr = umnozak_φM / len(M)
 M_kvadrat_srednja_vr = suma_kvadrata_M / len(M)
 
 Dt = umnozak_srednja_vr / φ_kvadrat_srednja_vr
-Dt = int(Dt)
 
 print(Dt)
 
@@ -26,5 +25,14 @@ stand_devijacija = math.sqrt(((M_kvadrat_srednja_vr/φ_kvadrat_srednja_vr)-Dt**2
 
 print(stand_devijacija)
 
+x = [0, 1.1]
+y = []
+
+for el in x:
+    y.append(Dt*el)
+
 plt.plot(φ,M, 'go')
+plt.plot(x,y)
+plt.xlabel('φ [rad]')
+plt.ylabel('M [Nm]')
 plt.show()
