@@ -60,7 +60,10 @@ class HarmonicOscillator:
         plt.plot(vrijeme, lista)
         if showPlot == True:
             plt.show()
-    
+
+    #Numericki period racunam tako da za pocetni trenutak uzmem trenutak kada je tijelo preslo ravnotezni polozaj po prvi put, tj onda su trenutni x i pocetni x suprotnih predznaka, pa je njihov omjer negativan
+    #Zatim za konacan trenutak uzmem trenutak kad je tijelo opet preslo ravnotezni polozaj i vratilo se na pocetnu stranu, pa su trenutni x i pocetni x istog predznaka
+    #Taj vremeneski interval je zapravo pola perioda, pa ga pomnozim sa 2 da dobijem period
     def numericalPeriod(self):
         HarmonicOscillator.reset(self)
         HarmonicOscillator.move(self, 4*np.pi*np.sqrt(HarmonicOscillator.returnInfo(self)[-1]/HarmonicOscillator.returnInfo(self)[-2]))
@@ -74,4 +77,4 @@ class HarmonicOscillator:
                 if self.lista_x[0]/self.lista_x[i] > 0:
                     t1 = self.lista_t[i]
                     break
-        return 2*(t1-t0)
+        return 2.*(t1-t0)
