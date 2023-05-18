@@ -3,7 +3,7 @@ import numpy as np
 from numpy import linalg as LA
 class Gravity:
     def __init__(self,r1,v1,m1,r2,v2,m2,dt):
-        self.G = 6.67*10**(-11)
+        self.G = 6.67408*10**(-11)
         self.r1 = [r1]
         self.v1 = [v1]
         self.a1 = []
@@ -27,10 +27,10 @@ class Gravity:
         self.a2 = []
     
     def returnInfo(self):
-        return self.r1, self.v1, self.a1, self.r2, self.v2, self.a2,
+        return self.r1, self.v1, self.a1, self.r2, self.v2, self.a2
     
     def move(self,t):
-        for i in (self.dt, t, self.dt):
+        for i in np.arange(self.dt, t, self.dt):
             self.a1.append(-1*self.G*self.m2*(self.r1[-1]-self.r2[-1])/(LA.norm(self.r1[-1]-self.r2[-1]))**3)
             self.v1.append(self.v1[-1] + self.a1[-1]*self.dt)
             self.r1.append(self.r1[-1] + self.v1[-1]*self.dt)
