@@ -27,7 +27,7 @@ class Gravity:
         self.a2 = []
     
     def returnInfo(self):
-        return self.r1, self.v1, self.a1, self.r2, self.v2, self.a2
+        return self.r1, self.v1, self.a1, self.r2, self.v2, self.a2, self.x1, self.y1, self.x2, self.y2
     
     def move(self,t):
         for i in np.arange(self.dt, t, self.dt):
@@ -37,14 +37,14 @@ class Gravity:
             self.a2.append(-1*self.G*self.m1*(self.r2[-1]-self.r1[-2])/(LA.norm(self.r2[-1]-self.r1[-2]))**3)
             self.v2.append(self.v2[-1] + self.a2[-1]*self.dt)
             self.r2.append(self.r2[-1] + self.v2[-1]*self.dt)
-    
-    def plot_trajectory(self,t):
-        Gravity.move(self,t)
         for i in range(len(self.r1)):
             self.x1.append(self.r1[i][0])
             self.y1.append(self.r1[i][1])
             self.x2.append(self.r2[i][0])
             self.y2.append(self.r2[i][1])
+    
+    def plot_trajectory(self,t):
+        Gravity.move(self,t)
         plt.plot(self.x1, self.y1, 'orange')
         plt.plot(self.x2, self.y2, 'b')
         plt.xlabel('x [m]')
