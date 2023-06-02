@@ -1,10 +1,3 @@
-#Napisite program koji crta putanju nabijene cestice u vremenski promjenjivom elektricnom i magnetnom polju
-#Demonstrirajte valjanost putanje za slucaj nabijene cestice koja se giba u vremenski promjenjivom
-#magnetnom polju B(t) = (0, 0, B(t)) i ima sve tri komponente pocetne brzine razlicite od 0. Neka se magnetno
-#polje mijenja linearno i neka u pocetnom trenutku iznosi B(t = 0) = 0, a u konacnom B(t = 10) = 1.
-#Usporedite putanju elektrona u konstantnom i vremenski promjenjivom magnetnom polju.
-#Usporedite putanje elektrona i pozitrona u vremenski promjenjivom magnetnom polju
-
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 import numpy as np
@@ -62,7 +55,7 @@ class EM_field:
         self.y = [el[1] for el in self.r]
         self.z = [el[2] for el in self.r]
     
-    def plot_trajectory(self, t, useRungeKutta = True):
+    def plot_trajectory(self, t, title, useRungeKutta = True):
         if useRungeKutta == True:
             EM_field.moveRungeKutta(self, t)
         else:
@@ -72,16 +65,5 @@ class EM_field:
         ax.set_xlabel('x [m]')
         ax.set_ylabel('y [m]')
         ax.set_zlabel('z [m]')
+        ax.set_title(title)
         plt.show()
-    
-    def compare(self, t):
-        EM_field.reset(self)
-        EM_field.moveEuler(self, t)
-        listEuler = self.r.copy()
-        EM_field.reset(self)
-        EM_field.moveRungeKutta(self, t)
-        comparison_list = []
-        for i in range(len(self.r)):
-            comparison_list.append(LA.norm(self.r[i]-listEuler[i]))
-        return comparison_list
-
