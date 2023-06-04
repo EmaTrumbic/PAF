@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 import numpy as np
 from numpy import linalg as LA
+
 class EM_field:
     def __init__(self, r, v, m, q, E, fE, B, fB, dt):
         self.r = [r]
