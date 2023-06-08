@@ -19,7 +19,7 @@ class EM_field:
         self.z = []
 
     def returnInfo(self):
-        return self.r, self.v, self.a, self.E, self.B, self.x, self.y, self.z
+        return self.r, self.v, self.a, self.E, self.B, self.x, self.y, self.z, self.m, self.q
 
     def reset(self):
         self.r = [self.r[0]]
@@ -46,8 +46,8 @@ class EM_field:
             for j in range(3):
                 k_v.append(self.q/self.m * (self.E[-1] + np.cross((self.v[-1]+0.5*k_v[-1]),self.B[-1]))*self.dt)
                 k_r.append((self.v[-1]+0.5*k_v[-1])*self.dt)
-            self.v.append(self.v[-1]+(k_v[0]+2*k_v[1]+2*k_v[2]+k_v[3])/6)
-            self.r.append(self.r[-1]+(k_r[0]+2*k_r[1]+2*k_r[2]+k_r[3])/6)
+            self.v.append(self.v[-1]+(k_v[0]+2.*k_v[1]+2.*k_v[2]+k_v[3])/6)
+            self.r.append(self.r[-1]+(k_r[0]+2.*k_r[1]+2.*k_r[2]+k_r[3])/6)
             self.E.append(self.fE(self.E[-1]))
             self.B.append(self.fB(self.B[-1]))
             self.a.append(self.q/self.m * (self.E[-1] + np.cross(self.v[-1],self.B[-1])))
